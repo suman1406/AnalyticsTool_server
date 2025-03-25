@@ -1,0 +1,43 @@
+const mongoose = require('mongoose');
+
+const GeotagNintendoSchema = new mongoose.Schema({
+  created_at: { type: Date },
+  id: { type: String, required: true },
+  id_str: { type: String },
+  text: { type: String },
+  source: { type: String },
+  truncated: { type: Boolean },
+  in_reply_to_status_id: { type: String },
+  in_reply_to_status_id_str: { type: String },
+  in_reply_to_user_id: { type: String },
+  in_reply_to_user_id_str: { type: String },
+  in_reply_to_screen_name: { type: String },
+  user: { type: Object },
+  geo: { type: Object },
+  coordinates: { type: Object },
+  place: { type: Object },
+  contributors: { type: Array },
+  is_quote_status: { type: Boolean },
+  quote_count: { type: Number },
+  reply_count: { type: Number },
+  retweet_count: { type: Number },
+  favorite_count: { type: Number },
+  entities: { type: Object },
+  favorited: { type: Boolean },
+  retweeted: { type: Boolean },
+  filter_level: { type: String },
+  lang: { type: String },
+  timestamp_ms: { type: String },
+  retweeted_status: { type: Object },
+  possibly_sensitive: { type: Boolean },
+  extended_entities: { type: Object },
+  display_text_range: { type: [Number] },
+  extended_tweet: { type: Object },
+  quoted_status_id: { type: String },
+  quoted_status_id_str: { type: String },
+  quoted_status: { type: Object },
+  quoted_status_permalink: { type: Object },
+  limit: { type: Number }
+});
+
+module.exports = mongoose.model('GeotagNintendo', GeotagNintendoSchema, 'GeotagNintendo_processed');
