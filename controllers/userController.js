@@ -38,7 +38,11 @@ exports.register = async (req, res) => {
     // Send a welcome email with email, password, and username using userCreated mailer function
     userCreated(username, email, password);
 
-    return res.status(201).json({ message: 'User registered successfully', token });
+    return res.status(201).json({ 
+      message: "User registered successfully", 
+      user: { id: newUser._id, email: newUser.email } 
+    });
+    
   } catch (err) {
     console.error('Registration error:', err);
     return res.status(500).json({ error: 'Server error' });

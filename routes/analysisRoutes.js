@@ -4,7 +4,7 @@ const analysisController = require('../controllers/analysisController');
 const webTokenValidator = require('../middleware/webTokenValidator');
 
 // Word Frequency: /api/word_frequency?dataset=<dataset>
-router.get('/word_frequency', webTokenValidator, analysisController.wordFrequency);
+router.get('/word_frequency', analysisController.wordFrequency);
 
 // N-gram Frequency: /api/ngram_frequency?dataset=<dataset>
 router.get('/ngram_frequency', webTokenValidator, analysisController.ngramFrequency);

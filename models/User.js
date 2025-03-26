@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -13,14 +13,10 @@ const userSchema = new mongoose.Schema({
     unique: true,
     trim: true,
   },
-  password: { // Remember to hash passwords in production
+  password: {
+    // Ensure to hash passwords before storing
     type: String,
     required: true,
-  },
-  role: {
-    type: String,
-    enum: ['user', 'admin'],
-    default: 'user'
   },
   createdAt: {
     type: Date,
@@ -28,4 +24,5 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('User', userSchema);
+// Remove duplicate import (no need to redefine `mongoose`)
+module.exports = mongoose.model("User", userSchema);
