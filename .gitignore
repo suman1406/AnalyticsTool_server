@@ -5,7 +5,7 @@
 /.env
 
 **/.DS_Store
-# /mail/mailer.js
+/mail/mailer.js
 
 /.vscode
 
