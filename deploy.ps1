@@ -1,18 +1,13 @@
-# deploy.ps1
-Write-Output "Deploying local server..."
-
-# Look for any node processes running server.js and stop them.
-$existing = Get-CimInstance Win32_Process -Filter "Name = 'node.exe'" | Where-Object { $_.CommandLine -match "server\.js" }
-
-if ($existing) {
-    Write-Output "Found running server process(es). Stopping them..."
-    $existing | ForEach-Object { Stop-Process -Id $_.ProcessId -Force }
+Write-Host "Deploying local server..."
+$process = Get-Process node -ErrorAction SilentlyContinue | Where-Object { $_.Path -like "*server.js" }
+if ($process) {
+    Write-Host "Stopping existing server process..."
+    Stop-Process -Id $process.Id -Force
+    Start-Sleep -Seconds 2
 } else {
-    Write-Output "No existing server process found."
+    Write-Host "No existing server process found."
 }
-
-# Start the new server in a new process.
-Write-Output "Starting the server..."
-Start-Process "node" "server.js" -WorkingDirectory (Get-Location)
-
-Write-Output "Local deployment complete."
+Write-Host "Starting the server..."
+Start-Process -FilePath "node" -ArgumentList "server.js" -NoNewWindow -RedirectStandardOutput "server.log"
+Start-Sleep -Seconds 2
+Write-Host "Local deployment complete."
